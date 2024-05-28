@@ -2,19 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:labpfinalproject/calculator/calclulator_screen.dart';
 import 'package:labpfinalproject/porfolio/portfolio_app.dart';
 import 'package:labpfinalproject/quiz_app/quiz_app.dart';
+import 'package:labpfinalproject/weather_app/weather.dart';
+import 'package:intl/intl.dart';
+
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var date = DateFormat("yMMMMd").format(DateTime.now());
     return Scaffold(
       appBar: AppBar(
         title: const Text(
           'My All apps',
-          style: TextStyle(color: Colors.white, fontSize: 24),
+          style: TextStyle(color: Colors.white, fontSize: 24,fontWeight: FontWeight.w600),
         ),
         backgroundColor: Colors.orangeAccent,
+        automaticallyImplyLeading: false,
+        actions: [
+          Text(date,style: const TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.w600),),
+          const SizedBox(width: 5,)
+        ],
       ),
       body: Center(
         child: GridView.count(
@@ -47,7 +56,9 @@ class HomeScreen extends StatelessWidget {
             ),
             InkWell(
               splashColor: Colors.black26,
-              onTap: () {},
+              onTap: () {
+                Navigator.push(context,MaterialPageRoute(builder: (context)=>const Weather()));
+              },
               child: Column(
                 children: [
                   Ink.image(
